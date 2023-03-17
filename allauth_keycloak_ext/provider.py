@@ -5,16 +5,16 @@ from django.contrib.auth import get_user_model
 
 OVERRIDE_NAME = (
     getattr(settings, "SOCIALACCOUNT_PROVIDERS", {})
-    .get("customkeycloak", {})
-    .get("OVERRIDE_NAME", "CustomKeycloak")
+    .get("keycloak_ext", {})
+    .get("OVERRIDE_NAME", "Keycloak Ext")
 )
 
 
-class CustomKeycloakProvider(KeycloakProvider):
-    id = "customkeycloak"
+class KeycloakExtProvider(KeycloakProvider):
+    id = "keycloak_ext"
     name = OVERRIDE_NAME
     settings = getattr(settings, "SOCIALACCOUNT_PROVIDERS", {}).get(
-        "customkeycloak", {}
+        "keycloak_ext", {}
     )
 
     def _updateGroups(self, social_login, extra_data):
@@ -59,4 +59,4 @@ class CustomKeycloakProvider(KeycloakProvider):
         return social_login
 
 
-provider_classes = [CustomKeycloakProvider]
+provider_classes = [KeycloakExtProvider]
