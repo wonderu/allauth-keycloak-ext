@@ -1,22 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from allauth.socialaccount.providers.keycloak.provider import KeycloakProvider
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth.models import Group
-from django.core.exceptions import (
-    ImproperlyConfigured,
-    ObjectDoesNotExist,
-    PermissionDenied,
-)
-
 
 OVERRIDE_NAME = (
     getattr(settings, "SOCIALACCOUNT_PROVIDERS", {})
     .get("customkeycloak", {})
     .get("OVERRIDE_NAME", "CustomKeycloak")
 )
+
 
 class CustomKeycloakProvider(KeycloakProvider):
     id = "customkeycloak"
@@ -26,15 +18,21 @@ class CustomKeycloakProvider(KeycloakProvider):
     )
 
     def _updateGroups(self, social_login, extra_data):
-        if (groups := self.settings.get("GROUPS")) is not None and (mapping := groups.get("GROUP_TO_FLAG_MAPPING")) is not None:
-            filters = {social_login.user.USERNAME_FIELD: getattr(social_login.user, social_login.user.USERNAME_FIELD)}
+        if (groups := self.settings.get("GROUPS")) is not None and (
+            mapping := groups.get("GROUP_TO_FLAG_MAPPING")
+        ) is not None:
+            filters = {
+                social_login.user.USERNAME_FIELD: getattr(
+                    social_login.user, social_login.user.USERNAME_FIELD
+                )
+            }
             user_model = get_user_model()
             try:
                 user = user_model.objects.get(**filters)
                 if user:
                     if isinstance(user, list) and len(user) > 0:
                         user = user[0]
-                #user = get_user_model().objects.get()
+                    # user = get_user_model().objects.get()
                     for flag, group in mapping.items():
                         if hasattr(user, flag):
                             if not isinstance(group, list):
@@ -47,7 +45,6 @@ class CustomKeycloakProvider(KeycloakProvider):
 
                             setattr(user, flag, value)
                             setattr(social_login.user, flag, value)
-                            # logger.debug("Attribute '%s' for user '%s' was set to '%s'.", flag, user, value)
                     user.save()
             except user_model.DoesNotExist:
                 print("User doesn't exist")
@@ -57,7 +54,7 @@ class CustomKeycloakProvider(KeycloakProvider):
         social_login = super().sociallogin_from_response(request, response)
         extra_data = self.extract_extra_data(response)
         self._updateGroups(social_login, extra_data)
-        
+
         print(extra_data)
         return social_login
 
