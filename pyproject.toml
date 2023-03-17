@@ -85,11 +85,11 @@ test = ["coverage"]
 # maintainers, and where to support the project financially. The key is
 # what's used to render the link text on PyPI.
 [project.urls]  # Optional
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Reports" = "https://github.com/pypa/sampleproject/issues"
-"Funding" = "https://donate.pypi.org"
-"Say Thanks!" = "http://saythanks.io/to/example"
-"Source" = "https://github.com/pypa/sampleproject/"
+"Homepage" = "https://github.com/wonderu/allauth-keycloak-ext/"
+"Bug Reports" = "https://github.com/wonderu/allauth-keycloak-ext/issues"
+#"Funding" = "https://donate.pypi.org"
+#"Say Thanks!" = "http://saythanks.io/to/example"
+"Source" = "https://github.com/wonderu/allauth-keycloak-ext/"
 
 # The following would provide a command line executable called `sample`
 # which executes the function `main` from this package when invoked.

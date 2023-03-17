@@ -4,19 +4,19 @@ from django.test.utils import override_settings
 from allauth.socialaccount.tests import OpenIDConnectTests
 from allauth.tests import MockedResponse, TestCase
 
-from .provider import CustomKeycloakProvider
+from .provider import KeycloakExtProvider
 
 
 @override_settings(
     SOCIALACCOUNT_PROVIDERS={
-        CustomKeycloakProvider.id: dict(
+        KeycloakExtProvider.id: dict(
             KEYCLOAK_URL="https://keycloak.unittest.example",
             KEYCLOAK_REALM="unittest",
         )
     }
 )
 class KeycloakTests(OpenIDConnectTests, TestCase):
-    provider_id = CustomKeycloakProvider.id
+    provider_id = KeycloakExtProvider.id
 
     def get_mocked_response(self):
         return MockedResponse(
