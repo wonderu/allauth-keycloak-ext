@@ -1,0 +1,5 @@
+include LICENSE.txt
+include README.md
+#recursive-include keycloak_ext/static *
+#recursive-include keycloak_ext/templates *
+recursive-include docs *
