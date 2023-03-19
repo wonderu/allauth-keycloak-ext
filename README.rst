@@ -92,6 +92,12 @@ Once you have installed django-allauth-keycloak-ext, you can use it in your Djan
 
     Note that you can disable creating of any group by mapping them to `None`. 
 
+
+Usage Example
+-------------
+
+https://github.com/wonderu/keycloak-django - test application
+
 License
 -------
 
