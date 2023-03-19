@@ -1,5 +1,4 @@
 include LICENSE
-include *.py
 include *.rst
 #recursive-include keycloak_ext/static *
 #recursive-include keycloak_ext/templates *
