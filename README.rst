@@ -8,6 +8,7 @@ Features
 
 - Supports adding/removing users from Django groups mapped to Keycloak groups during login procedure.
 - Supports mapping Keycloak groups to is_staff and is_superuser flags of Django users.
+- Supports mapping of Keycloak groups to Django ones.
 
 Installation
 ------------
@@ -33,7 +34,7 @@ Once you have installed django-allauth-keycloak-ext, you can use it in your Djan
            # ...
        ]
 
-2. Configure Django-allauth to use Keycloak Ext as a provider by adding the following settings to your `settings.py` file:
+2. Configure Django-allauth to use Keycloak Ext as a provider and map flags to Keycloak groups by adding the following settings to your `settings.py` file:
 
    .. code-block:: python
 
@@ -54,13 +55,48 @@ Once you have installed django-allauth-keycloak-ext, you can use it in your Djan
 
    .. code-block:: python
 
-       ALLAUTH_KEYCLOAK_GROUPS = {
-           'group-name-1': 'django-group-name-1',
-           'group-name-2': 'django-group-name-2',
-           # ...
-       }
+       SOCIALACCOUNT_PROVIDERS = {
+            "keycloak_ext": {
+                "KEYCLOAK_URL": "http://localhost:8080",
+                "KEYCLOAK_REALM": "master",
+                "GROUPS": {
+                    ...
+                    "GROUPS_MAPPING": {
+                        "django-admin-role": "django-admin-group",
+                        "offline_access": "Offline Group",
+                    }
+                    ...
+                },
+            }
+        }
 
-   Note that the keys of the `ALLAUTH_KEYCLOAK_GROUPS` dictionary should be the names of the security groups you have configured in Keycloak, and the values should be the names of the Django groups you want to map them to.
+   Note that the keys of the `GROUPS_MAPPING` dictionary should be the names of the security groups you have configured in Keycloak, and the values should be the names of the Django groups you want to map them to.
+
+4. Configure auto creation of the security groups in Django in your `settings.py` file:
+    .. code-block:: python
+
+        SOCIALACCOUNT_PROVIDERS = {
+            "keycloak_ext": {
+                "KEYCLOAK_URL": "http://localhost:8080",
+                "KEYCLOAK_REALM": "master",
+                "GROUPS": {
+                    ...
+                    "GROUPS_MAPPING": {
+                        "django-admin-role": "django-admin-group",
+                        "offline_access": None,
+                    },
+                    "GROUPS_AUTO_CREATE": True,
+                },
+            }
+        }
+
+    Note that you can disable creating of any group by mapping them to `None`. 
+
+
+Usage Example
+-------------
+
+https://github.com/wonderu/keycloak-django - test application
 
 License
 -------
