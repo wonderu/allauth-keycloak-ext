@@ -1,24 +1,24 @@
 [project]
-name = "django-allauth-keycloak-ext"  # Required
+#name = "django-allauth-keycloak-ext"  # Required
 
-version = "0.1.0"  # Required
+#version = "0.1.0"  # Required
 
-description = "Extensions for django-allauth module to support groups of Keycloak"  # Optional
+#description = "Extensions for django-allauth module to support groups of Keycloak"  # Optional
 
-readme = "README.md" # Optional
+#readme = "README.md" # Optional
 
-requires-python = ">=3.8"
+#requires-python = ">=3.8"
 
 license = {file = "LICENSE.txt"}
 
-keywords = ["allauth", "keycloak", "groups"]  # Optional
+#keywords = ["allauth", "keycloak", "groups"]  # Optional
 
 # This should be your name or the name of the organization who originally
 # authored the project, and a valid email address corresponding to the name
 # listed.
-authors = [
-  {name = "Igor Podsekin", email = "py@wonderu.com" } # Optional
-]
+#authors = [
+#  {name = "Igor Podsekin", email = "py@wonderu.com" } # Optional
+#]
 
 #maintainers = [
 #  {name = "A. Great Maintainer", email = "maintainer@example.com" } # Optional
