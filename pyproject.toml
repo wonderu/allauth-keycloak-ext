@@ -11,14 +11,14 @@ requires-python = ">=3.8"
 
 license = {file = "LICENSE.txt"}
 
-#keywords = ["allauth", "keycloak", "groups"]  # Optional
+keywords = ["allauth", "keycloak", "groups", "django"]  # Optional
 
 # This should be your name or the name of the organization who originally
 # authored the project, and a valid email address corresponding to the name
 # listed.
-#authors = [
-#  {name = "Igor Podsekin", email = "py@wonderu.com" } # Optional
-#]
+authors = [
+  {name = "Igor Podsekin", email = "py@wonderu.com" } # Optional
+]
 
 #maintainers = [
 #  {name = "A. Great Maintainer", email = "maintainer@example.com" } # Optional
