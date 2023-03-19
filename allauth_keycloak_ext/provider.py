@@ -20,9 +20,8 @@ class KeycloakExtProvider(KeycloakProvider):
 
     def _autoCreateGroups(self, user, groups, groups_mapping):
         for group_name in groups:
-            if (group_name not in groups_mapping):
+            if group_name not in groups_mapping:
                 self._add_user_to_group(user, group_name)
-        pass
 
     def _add_user_to_group(self, user, group_name):
         # Check if group exists
@@ -71,7 +70,9 @@ class KeycloakExtProvider(KeycloakProvider):
 
                     if groups_settings.get("GROUPS_AUTO_CREATE"):
                         groups = extra_data.get("groups", [])
-                        self._autoCreateGroups(user, groups, groups_settings.get("GROUPS_MAPPING"))
+                        self._autoCreateGroups(
+                            user, groups, groups_settings.get("GROUPS_MAPPING")
+                        )
 
                     if (
                         groups_mapping := groups_settings.get("GROUPS_MAPPING")
