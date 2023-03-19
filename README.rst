@@ -1,5 +1,12 @@
-django-allauth-keycloak-ext
+Welcome to django-allauth-keycloak-ext
 ==============================
+
+.. image:: https://github.com/wonderu/allauth-keycloak-ext/actions/workflows/release.yml/badge.svg
+   :target: https://github.com/wonderu/allauth-keycloak-ext/actions
+
+.. image:: https://img.shields.io/pypi/v/django-allauth-keycloak-ext.svg
+   :target: https://pypi.org/project/django-allauth-keycloak-ext/
+
 
 django-allauth-keycloak-ext is a Python package that extends Django-allauth to support security groups configured in Keycloak.
 
