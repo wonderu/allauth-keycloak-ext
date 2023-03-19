@@ -49,17 +49,6 @@ Once you have installed django-allauth-keycloak-ext, you can use it in your Djan
                 }
             }
         }
-..       
-       SOCIALACCOUNT_PROVIDERS = {
-           'keycloak': {
-               'KEY': 'keycloak',
-               'SECRET': '<your-client-secret>',
-               'SCOPE': ['openid', 'email', 'profile'],
-               'AUTH_PARAMS': {'resource': '<your-client-id>'},
-               'VERIFIED_EMAIL': False,
-               'VERIFIED_EMAIL_TEMPLATE': '',
-           },
-       }
 
 3. Configure the security groups you want to use in Keycloak and map them to Django groups in your `settings.py` file:
 
@@ -73,14 +62,6 @@ Once you have installed django-allauth-keycloak-ext, you can use it in your Djan
 
    Note that the keys of the `ALLAUTH_KEYCLOAK_GROUPS` dictionary should be the names of the security groups you have configured in Keycloak, and the values should be the names of the Django groups you want to map them to.
 
-..
-    4. Use the `allauth_keycloak_ext` backend in your Django-allauth configuration by adding the following settings to your `settings.py` file:
-
-    .. code-block:: python
-
-        ACCOUNT_AUTHENTICATION_METHOD = 'email'
-        ACCOUNT_EMAIL_REQUIRED = True
-       
 License
 -------
 
